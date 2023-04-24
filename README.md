@@ -4,10 +4,10 @@
   </a>
 </p>
 <h1 align="center" style="font-weight: bold">
-  CASE Starter
+  CASE Many-to-Many relation tutorial
 </h1>
 
-This starter allows you to create an application or an ERP using CASE. CASE is fully customizable open to contributions. You can contribute by adding features, reporting bugs or participating in discussions.
+This repo is an example of all the features possibles with CASE on relation Many-to-Many.
 
 # Getting started
 
@@ -40,4 +40,3 @@ npm run seed
 And Use your CASE admin’s user credentials to log in.
 
 > You can use the email `admin@case.app` and password `case` to log in.
-
