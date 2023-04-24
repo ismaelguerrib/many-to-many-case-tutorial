@@ -1,3 +1,5 @@
+import { MovieSeeder } from './movie.seeder'
+import { ActorSeeder } from './actor.seeder'
 import 'dotenv/config'
 
 import { DataSource } from 'typeorm'
@@ -12,6 +14,10 @@ seed()
 
 async function seed() {
   // * Resource counts (keep comment for schematics).
+
+const movieCount = 40
+
+const actorCount = 40
 
   const settingCount = 10
   const userCount = 40
@@ -32,6 +38,10 @@ async function seed() {
 
   const deleteTablePromises: Promise<void>[] = [
     // * Table names (keep comment for schematics).
+  'movies',
+
+  'actors',
+
     'notifications',
     'users',
     'permission_role',
@@ -52,6 +62,8 @@ async function seed() {
   await roleSeeder.seed()
   await userSeeder.seed()
 
+  await (new ActorSeeder(dataSource, actorCount)).seed()
+  await (new MovieSeeder(dataSource, movieCount)).seed()
   await dataSource.destroy()
 
   console.log(

@@ -1,5 +1,9 @@
 const resourceNames: string[] = [
   // * Resources (keep comment for schematics).
+  'movies',
+
+  'actors',
+
   'users',
   'roles',
   'settings'

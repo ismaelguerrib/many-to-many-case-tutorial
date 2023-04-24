@@ -1,3 +1,5 @@
+import { Movie } from './../resources/movie/movie.entity'
+import { Actor } from './../resources/actor/actor.entity'
 import { SearchResult } from '@casejs/nest-library'
 import { Injectable } from '@nestjs/common'
 import {
@@ -29,6 +31,22 @@ export class SearchService {
     }
 
     // * Search resources (keep comment for schematics).
+if (
+        resources.includes(Movie.name) &&
+        Movie.searchableFields &&
+        Movie.searchableFields.length
+      ) {
+        const movies: SearchResult[] = await this.searchResource(Movie, terms)
+        searchResults = [...searchResults, ...movies]
+      }
+if (
+        resources.includes(Actor.name) &&
+        Actor.searchableFields &&
+        Actor.searchableFields.length
+      ) {
+        const actors: SearchResult[] = await this.searchResource(Actor, terms)
+        searchResults = [...searchResults, ...actors]
+      }
     if (
       resources.includes(User.name) &&
       User.searchableFields &&
@@ -57,6 +75,20 @@ export class SearchService {
     let searchResults: SearchResult[] = []
 
     // * Get search result objects (keep comment for schematics).
+if (query.movieIds && query.movieIds.length || query.movieId) {
+        const movies: SearchResult[] = await this.getSearchResultObjectsForResource(
+          Movie,
+          query.movieIds || query.movieId
+        )
+        searchResults = [...searchResults, ...movies]
+      }
+if (query.actorIds && query.actorIds.length || query.actorId) {
+        const actors: SearchResult[] = await this.getSearchResultObjectsForResource(
+          Actor,
+          query.actorIds || query.actorId
+        )
+        searchResults = [...searchResults, ...actors]
+      }
     if (query.userIds && query.userIds.length) {
       const users: SearchResult[] =
         await this.getSearchResultObjectsForResource(User, query.userIds)

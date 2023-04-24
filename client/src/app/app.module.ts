@@ -13,7 +13,13 @@ import { UserListComponent } from './resources/user/user-list.component'
 
 import Bugsnag from '@bugsnag/js'
 import { BugsnagErrorHandler } from '@bugsnag/plugin-angular'
-import { CaseModule } from '@casejs/angular-library'
+import { CaseModule } from '@casejs/angular-library';
+import { ActorCreateEditComponent } from './resources/actor/actor-create-edit/actor-create-edit.component';
+import { ActorListComponent } from './resources/actor/actor-list/actor-list.component';
+import { ActorDetailComponent } from './resources/actor/actor-detail/actor-detail.component';
+import { MovieCreateEditComponent } from './resources/movie/movie-create-edit/movie-create-edit.component';
+import { MovieListComponent } from './resources/movie/movie-list/movie-list.component';
+import { MovieDetailComponent } from './resources/movie/movie-detail/movie-detail.component'
 
 if (environment.enableBugsnag) {
   Bugsnag.start({
@@ -32,7 +38,13 @@ export function errorHandlerFactory() {
     AppComponent,
     HomeComponent,
     UserListComponent,
-    UserCreateEditComponent
+    UserCreateEditComponent,
+    ActorCreateEditComponent,
+    ActorListComponent,
+    ActorDetailComponent,
+    MovieCreateEditComponent,
+    MovieListComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,

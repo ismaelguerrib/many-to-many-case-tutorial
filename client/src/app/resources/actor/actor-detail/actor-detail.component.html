@@ -1,0 +1,57 @@
+<ng-container *ngIf="item">
+  <nav class="level">
+    <!-- Left side -->
+    <div class="level-left">
+      <div class="level-item">
+        <span class="icon is-large">
+          <i class="icon icon-grid is-size-2 has-text-link"></i>
+        </span>
+      </div>
+      <div class="level-item">
+        <h1 class="title is-2 has-text-weight-light">{{ item.name }}</h1>
+      </div>
+    </div>
+  </nav>
+
+  <div class="columns is-multiline">
+    <div class="column is-9">
+      <div class="card is-fullheight">
+        <div class="card-content">
+          <div class="columns is-multiline">
+            <div
+              class="column is-3"
+              *ngFor="let property of item.propertiesInArray"
+            >
+              <p class="is-uppercase has-text-grey has-text-weight-medium">
+                {{ property.key }}
+              </p>
+              <p>
+                {{ property.value }}
+              </p>
+            </div>
+          </div>
+          <!-- <div class="columns is-multiline">
+            <div class="column is-12">
+              <p
+                class="is-uppercase has-text-grey has-text-weight-medium"
+                *ngIf="item['movie'].length"
+              >
+                Movies
+              </p>
+              <div class="tags" *ngIf="item['movie'].length">
+                <span
+                  class="tag is-link"
+                  *ngFor="let movie of item['movie']"
+                  routerLink="/resources/movie/{{ movie.id }}"
+                >
+                  {{ movie.name }}
+                </span>
+              </div>
+            </div>
+            <hr />
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -4,6 +4,8 @@ import { caseRoutes, AuthGuard } from '@casejs/angular-library'
 import { HomeComponent } from './pages/home/home.component'
 import { userRoutes } from './resources/user/user.routes'
 
+import { actorRoutes } from './resources/actor/actor.routes'
+import { movieRoutes } from './resources/movie/movie.routes'
 const routes: Routes = [
   {
     path: '',
@@ -11,7 +13,9 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   ...userRoutes,
-  ...(caseRoutes as Routes)
+    ...actorRoutes,
+  ...movieRoutes,
+...(caseRoutes as Routes)
 ]
 
 @NgModule({
