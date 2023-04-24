@@ -15,9 +15,9 @@ seed()
 async function seed() {
   // * Resource counts (keep comment for schematics).
 
-const movieCount = 40
+  const movieCount = 40
 
-const actorCount = 40
+  const actorCount = 40
 
   const settingCount = 10
   const userCount = 40
@@ -38,10 +38,9 @@ const actorCount = 40
 
   const deleteTablePromises: Promise<void>[] = [
     // * Table names (keep comment for schematics).
-  'movies',
-
-  'actors',
-
+    'actor_movie',
+    'movies',
+    'actors',
     'notifications',
     'users',
     'permission_role',
@@ -62,8 +61,8 @@ const actorCount = 40
   await roleSeeder.seed()
   await userSeeder.seed()
 
-  await (new ActorSeeder(dataSource, actorCount)).seed()
-  await (new MovieSeeder(dataSource, movieCount)).seed()
+  await new MovieSeeder(dataSource, movieCount).seed()
+  await new ActorSeeder(dataSource, actorCount, movieCount).seed()
   await dataSource.destroy()
 
   console.log(
