@@ -89,8 +89,12 @@ export class MovieService {
   }
 
   async show(id: number): Promise<Movie> {
-    const movie = await this.repository.findOneOrFail({ where: { id } })
+    const movie = await this.repository.findOneOrFail({
+      where: { id },
+      relations: { actors: true }
+    })
 
+    movie.actorIds = movie.actors.map((actor: Actor) => actor.id)
     return movie
   }
 

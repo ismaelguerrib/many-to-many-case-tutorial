@@ -88,11 +88,12 @@ export class ActorService {
   }
 
   async show(id: number): Promise<Actor> {
-    const query: SelectQueryBuilder<Actor> = this.repository
-      .createQueryBuilder('actor')
-      .leftJoinAndSelect('actor.movies', 'movie')
+    const actor: Actor = await this.repository.findOneOrFail({
+      where: { id },
+      relations: { movies: true }
+    })
 
-    let actor = await query.getOne()
+    actor.movieIds = actor.movies.map((movie: Movie) => movie.id)
 
     return actor
   }

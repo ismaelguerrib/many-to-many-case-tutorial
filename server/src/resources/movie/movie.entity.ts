@@ -35,4 +35,7 @@ export class Movie {
 
   // Calculated column for list display.
   actorNames?: string
+
+  // Calculated column for create-edit form.
+  actorIds?: number[]
 }
