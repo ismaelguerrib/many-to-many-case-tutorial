@@ -12,8 +12,8 @@ import { Actor } from '../actor/actor.entity'
 
 @Entity({ name: 'movies' })
 export class Movie {
-  public static searchableFields: string[] = ['id']
-  public static displayName: string = 'id'
+  public static searchableFields: string[] = ['name']
+  public static displayName: string = 'name'
 
   @PrimaryGeneratedColumn()
   id: number
@@ -32,4 +32,10 @@ export class Movie {
 
   @ManyToMany((type) => Actor, (actor) => actor.movies)
   actors: Actor[]
+
+  // Calculated column for list display.
+  actorNames?: string
+
+  // Calculated column for create-edit form.
+  actorIds?: number[]
 }

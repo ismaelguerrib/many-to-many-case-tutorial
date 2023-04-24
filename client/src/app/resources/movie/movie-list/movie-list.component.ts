@@ -11,7 +11,8 @@ import {
   FlashMessageService,
   ResourceDefinition,
   ResourceService,
-  Yield, YieldType
+  Yield,
+  YieldType
 } from '@casejs/angular-library'
 
 import { environment } from '../../../../environments/environment'
@@ -19,17 +20,20 @@ import { movieDefinition } from '../movie.definition'
 
 @Component({ template: caseListTemplate })
 export class MovieListComponent extends CaseListComponent implements OnInit {
-  
   // Remove this property to hide onboarding message.
   isOnboarding = environment.isOnboarding
 
   definition: ResourceDefinition = movieDefinition
   yields: Yield[] = [
     {
-        label: 'name',
-        property: 'name',
-        type: YieldType.Text
+      label: 'name',
+      property: 'name',
+      type: YieldType.Text
     },
+    {
+      label: 'actors',
+      property: 'actorNames'
+    }
   ]
 
   filters: Filter[] = []

@@ -58,9 +58,14 @@
               <p class="is-uppercase has-text-grey has-text-weight-medium">
                 {{ property.key }}
               </p>
-              <p>
+              <p *ngIf="property.key !== 'actors'">
                 {{ property.value }}
               </p>
+              <ul *ngIf="property.key === 'actors'">
+                <li *ngFor="let actor of property.value">
+                  {{ actor.name }}
+                </li>
+              </ul>
             </div>
           </div>
           <div class="columns is-multiline">

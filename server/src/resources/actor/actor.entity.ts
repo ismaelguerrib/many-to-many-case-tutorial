@@ -13,8 +13,8 @@ import { Movie } from '../movie/movie.entity'
 
 @Entity({ name: 'actors' })
 export class Actor {
-  public static searchableFields: string[] = ['id']
-  public static displayName: string = 'id'
+  public static searchableFields: string[] = ['name']
+  public static displayName: string = 'name'
 
   @PrimaryGeneratedColumn()
   id: number
@@ -27,11 +27,17 @@ export class Actor {
 
   @Column('varchar', {})
   @CaseProperty({
-    seed: (index: number) => faker.random.word()
+    seed: () => faker.name.fullName()
   })
   name: string
 
   @ManyToMany((type) => Movie, (movie) => movie.actors, { cascade: true })
   @JoinTable({ name: 'actor_movie' })
   movies: Movie[]
+
+  // Calculated column for list display.
+  movieNames?: string
+
+  // Calculated column for create-edit form.
+  movieIds?: number[]
 }

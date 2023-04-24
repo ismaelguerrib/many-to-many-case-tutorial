@@ -68,6 +68,13 @@ export class MovieService {
 
     return await this.paginationService.paginate({
       query,
+      transformResult: (movie: Movie) => {
+        // Create a coma-separated string with all actors names.
+        movie.actorNames = movie.actors
+          .map((actor: Actor) => actor.name)
+          .join(', ')
+        return movie
+      },
       currentPage: page ? parseInt(page, 10) : 1
     })
   }
@@ -82,8 +89,12 @@ export class MovieService {
   }
 
   async show(id: number): Promise<Movie> {
-    const movie = await this.repository.findOneOrFail({ where: { id } })
+    const movie = await this.repository.findOneOrFail({
+      where: { id },
+      relations: { actors: true }
+    })
 
+    movie.actorIds = movie.actors.map((actor: Actor) => actor.id)
     return movie
   }
 
