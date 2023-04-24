@@ -68,6 +68,12 @@ export class ActorService {
 
     return await this.paginationService.paginate({
       query,
+      transformResult: (actor: Actor) => {
+        actor.movieNames = actor.movies
+          .map((movie: Movie) => movie.name)
+          .join(', ')
+        return actor
+      },
       currentPage: page ? parseInt(page, 10) : 1
     })
   }

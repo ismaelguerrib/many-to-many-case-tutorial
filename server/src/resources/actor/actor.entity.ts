@@ -27,11 +27,14 @@ export class Actor {
 
   @Column('varchar', {})
   @CaseProperty({
-    seed: (index: number) => faker.random.word()
+    seed: () => faker.name.fullName()
   })
   name: string
 
   @ManyToMany((type) => Movie, (movie) => movie.actors, { cascade: true })
   @JoinTable({ name: 'actor_movie' })
   movies: Movie[]
+
+  // Calculated column for list display.
+  movieNames?: string
 }

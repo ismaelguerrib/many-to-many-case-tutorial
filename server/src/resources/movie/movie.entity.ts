@@ -32,4 +32,7 @@ export class Movie {
 
   @ManyToMany((type) => Actor, (actor) => actor.movies)
   actors: Actor[]
+
+  // Calculated column for list display.
+  actorNames?: string
 }

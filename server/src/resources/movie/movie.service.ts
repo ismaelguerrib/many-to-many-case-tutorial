@@ -68,6 +68,13 @@ export class MovieService {
 
     return await this.paginationService.paginate({
       query,
+      transformResult: (movie: Movie) => {
+        // Create a coma-separated string with all actors names.
+        movie.actorNames = movie.actors
+          .map((actor: Actor) => actor.name)
+          .join(', ')
+        return movie
+      },
       currentPage: page ? parseInt(page, 10) : 1
     })
   }
