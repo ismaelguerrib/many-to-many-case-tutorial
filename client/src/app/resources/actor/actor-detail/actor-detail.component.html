@@ -25,31 +25,16 @@
               <p class="is-uppercase has-text-grey has-text-weight-medium">
                 {{ property.key }}
               </p>
-              <p>
+              <p *ngIf="property.key !== 'movies'">
                 {{ property.value }}
               </p>
+              <ul *ngIf="property.key === 'movies'">
+                <li *ngFor="let movie of property.value">
+                  {{ movie.name }}
+                </li>
+              </ul>
             </div>
           </div>
-          <!-- <div class="columns is-multiline">
-            <div class="column is-12">
-              <p
-                class="is-uppercase has-text-grey has-text-weight-medium"
-                *ngIf="item['movie'].length"
-              >
-                Movies
-              </p>
-              <div class="tags" *ngIf="item['movie'].length">
-                <span
-                  class="tag is-link"
-                  *ngFor="let movie of item['movie']"
-                  routerLink="/resources/movie/{{ movie.id }}"
-                >
-                  {{ movie.name }}
-                </span>
-              </div>
-            </div>
-            <hr />
-          </div> -->
         </div>
       </div>
     </div>
