@@ -26,7 +26,7 @@ export class Movie {
 
   @Column('varchar', {})
   @CaseProperty({
-    seed: (index: number) => faker.random.word()
+    seed: (index: number) => faker.music.songName()
   })
   name: string
 
