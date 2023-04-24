@@ -13,8 +13,8 @@ import { Movie } from '../movie/movie.entity'
 
 @Entity({ name: 'actors' })
 export class Actor {
-  public static searchableFields: string[] = ['id']
-  public static displayName: string = 'id'
+  public static searchableFields: string[] = ['name']
+  public static displayName: string = 'name'
 
   @PrimaryGeneratedColumn()
   id: number
